@@ -1,0 +1,3 @@
+MAX_CHARS = 10000
+
+print("HOLA DESDE CONFIG")
