@@ -1,4 +1,4 @@
-# calculator/main.py
+# calculator/main.py.old
 
 import sys
 from pkg.calculator import Calculator
@@ -9,8 +9,8 @@ def main():
     calculator = Calculator()
     if len(sys.argv) <= 1:
         print("Calculator App")
-        print('Usage: python main.py "<expression>"')
-        print('Example: python main.py "3 + 5"')
+        print('Usage: python main.py.old "<expression>"')
+        print('Example: python main.py.old "3 + 5"')
         return
 
     expression = " ".join(sys.argv[1:])
