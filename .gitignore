@@ -12,3 +12,6 @@ wheels/
 #Idea IDE
 .idea
 .idea/
+
+#Env variables.
+.env
