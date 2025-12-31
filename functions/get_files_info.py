@@ -21,7 +21,7 @@ def get_files_info(working_directory, directory="."):
             file_size = os.path.getsize(file_path)
             final_string.append(f"- {l}: file_size= {file_size} bytes, is_dir={is_dir}")
         final_joined_string = " \n".join(final_string)
-        print(f"Result for {directory} directory: \n{final_joined_string}")
+        # print(f"Result for {directory} directory: \n{final_joined_string}")
         return f"Result for {directory} directory: \n{final_joined_string}"
 
     except Exception as e:

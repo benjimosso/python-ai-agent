@@ -20,21 +20,22 @@ def get_file_content(working_directory, file_path):
             # After reading the first MAX_CHARS...
             if f.read(1):
                 file_content_string += f'[...File "{file_path}" truncated at {MAX_CHARS} characters]'
-        print(file_content_string)
+        # print(file_content_string)
         return file_content_string
     except Exception as e:
         print(e)
 
-schema_get_files_content = types.FunctionDeclaration(
-    name="get_files_content",
-    description="Lists files in a specified directory relative to the working directory, providing file size and directory status",
+schema_get_file_content = types.FunctionDeclaration(
+    name="get_file_content",
+    description="Get the file content in a specified directory relative to the working directory, if the file is larger than ten thusand characters truncate it.",
     parameters=types.Schema(
         type=types.Type.OBJECT,
         properties={
-            "directory": types.Schema(
+            "file_path": types.Schema(
                 type=types.Type.STRING,
-                description="Directory path to list files from, relative to the working directory (default is the working directory itself)",
+                description="Directory path to get the file from, relative to the working directory (default is the working directory itself)",
             ),
         },
+        required = ["file_path"]
     ),
 )

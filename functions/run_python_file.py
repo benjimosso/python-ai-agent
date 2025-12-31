@@ -1,6 +1,6 @@
 import os.path
 import subprocess
-
+from google.genai import types
 
 def run_python_file(working_directory, file_path, args=None):
     try:
@@ -28,10 +28,41 @@ def run_python_file(working_directory, file_path, args=None):
             output_str = f"STDOUT: {sub_process_instance.stdout}"
         elif sub_process_instance.stderr != "":
             output_str = f"STDERR: {sub_process_instance.stderr}"
-        print(output_str)
+        # print(output_str)
         return output_str
 
 
 
     except Exception as e:
         print(e)
+
+schema_run_python_file = types.FunctionDeclaration(
+    name="run_python_file",
+    description="Executes a specified Python file within the working directory and returns its output",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "file_path": types.Schema(
+                type=types.Type.STRING,
+                description="Path to the Python file to run, relative to the working directory",
+            ),
+            # Way to write it according to gemini api docs
+            # URL: https://ai.google.dev/gemini-api/docs/function-calling?example=meeting
+            # "args": {
+            #     "type": "array",
+            #     "items": {"type": "string"},
+            #     "description":"Optional arguments to run the file."
+            # }
+            # the below is the way writen in bootdev solution:
+            "args": types.Schema(
+                type=types.Type.ARRAY,
+                items=types.Schema(
+                    type=types.Type.STRING,
+                ),
+                description="Optional list of arguments to pass to the Python script",
+            ),
+
+        },
+        required = ["file_path"]
+    ),
+)
